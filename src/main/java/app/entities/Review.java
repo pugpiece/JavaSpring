@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(
-        name = "Review"
+        name = "REVIEW"
 )
 public class Review {
     @Id
@@ -19,25 +19,25 @@ public class Review {
     private int reviewId;
 
     @Column(
-            name = "reviewRating",
+            name = "RATING",
             length = 5
     )
     private float reviewRating;
 
     @Column(
-            name = "reviewPluses",
+            name = "PLUSES",
             length = 50
     )
     private String reviewPluses;
 
     @Column(
-            name = "reviewMinuses",
+            name = "MINUSES",
             length = 50
     )
     private String reviewMinuses;
 
     @Column(
-            name = "reviewOverview",
+            name = "OVERVIEW",
             length = 50
     )
     private String reviewOverview;
@@ -47,9 +47,9 @@ public class Review {
             fetch = FetchType.EAGER
     )
     @JoinColumn(
-            name = "customerId"
+            name = "ID_CUSTOMER"
     )
-    @JsonBackReference(value="reviewToCustomer")
+    @JsonManagedReference(value="REVIEW_TO_CUSTOMER")
     private Customer customer;
 
     @ManyToOne(
@@ -57,9 +57,9 @@ public class Review {
             fetch = FetchType.EAGER
     )
     @JoinColumn(
-            name = "dishId"
+            name = "ID_DISH"
     )
-    @JsonBackReference(value="reviewToDish")
+    @JsonManagedReference(value="REVIEW_TO_DISH")
     private Dish dish;
 
     public Review() {

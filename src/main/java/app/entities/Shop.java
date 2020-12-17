@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table(
-        name = "Shop"
+        name = "SHOP"
 )
 public class Shop {
     @Id
@@ -19,26 +19,26 @@ public class Shop {
     private int shopId;
 
     @Column(
-            name = "shopName",
+            name = "SHOP_NAME",
             length = 50
     )
     private String shopName;
 
     @Column(
-            name = "shopDescription",
+            name = "SHOP_DESCRIPTION",
             length = 10000
     )
     private String shopDescription;
 
     @Column(
-            name = "shopRating",
+            name = "RATING",
             length = 5
     )
     private float shopRating;
 
     @ManyToMany
     @JoinTable(
-            name = "ProductToShop",
+            name = "PRODUCT_TO_SHOP",
             joinColumns = {@JoinColumn(
                     name = "shopId"
             )},
@@ -51,7 +51,7 @@ public class Shop {
 
     @ManyToMany
     @JoinTable(
-            name = "InstrumentToShop",
+            name = "INSTRUMENT_TO_SHOP",
             joinColumns = {@JoinColumn(
                     name = "shopId"
             )},

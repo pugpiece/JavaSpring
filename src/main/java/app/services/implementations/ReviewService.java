@@ -92,4 +92,16 @@ public class ReviewService implements IReviewService {
         review.setCustomer(customer);
         reviewRepository.save(review);
     }
+
+    @Override
+    @Transactional
+    public void deleteAllNoUser() {
+        Iterable<Review> reviews = reviewRepository.findAll();
+        for(Review review : reviews) {
+            if (review.getCustomer() == null)
+                reviewRepository.deleteById(review.getReviewId());
+            else
+                reviewRepository.save(review);
+        }
+    }
 }

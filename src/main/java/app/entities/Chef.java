@@ -10,16 +10,16 @@ import java.util.Set;
 
 
 @Entity
-@Table(name = "Chef")
+@Table(name = "CHEF")
 public class Chef extends Customer{
 
     @Column(
-            name = "chefRating",
+            name = "RATING",
             length = 5
     )
     private float chefRating;
 
-    @JsonManagedReference(value="dishToChef")
+    @JsonBackReference(value="DISH_TO_CHEF")
     @OneToMany(mappedBy = "chef", fetch=FetchType.EAGER)
     private Set<Dish> dishes;
 

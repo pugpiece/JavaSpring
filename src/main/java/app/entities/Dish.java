@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table(
-        name = "Dish"
+        name = "DISH"
 )
 public class Dish {
 
@@ -20,13 +20,13 @@ public class Dish {
     private int dishId;
 
     @Column(
-            name = "dishName",
+            name = "DISH_NAME",
             length = 50
     )
     private String dishName;
 
     @Column(
-            name = "dishRecipe",
+            name = "RECIPE",
             length = 10000
     )
     private String dishRecipe;
@@ -38,7 +38,7 @@ public class Dish {
     @JoinColumn(
             name = "countryId"
     )
-    @JsonBackReference(value="dishToCountry")
+    @JsonManagedReference(value="DISH_TO_COUNTRY")
     private Country country;
 
     @ManyToOne(
@@ -48,12 +48,12 @@ public class Dish {
     @JoinColumn(
             name = "customerId"
     )
-    @JsonBackReference(value="dishToChef")
+    @JsonManagedReference(value="DISH_TO_CHEF")
     private Chef chef;
 
     @ManyToMany
     @JoinTable(
-            name = "ProductToDish",
+            name = "PRODUCT_TO_DISH",
             joinColumns = {@JoinColumn(
                     name = "dishId"
             )},
@@ -66,7 +66,7 @@ public class Dish {
 
     @ManyToMany
     @JoinTable(
-            name = "InstrumentToDish",
+            name = "INSTRUMENT_TO_DISH",
             joinColumns = {@JoinColumn(
                     name = "dishId"
             )},
@@ -77,7 +77,7 @@ public class Dish {
     @JsonIgnore
     private Set<Instrument> instruments;
 
-    @JsonManagedReference(value="reviewToDish")
+    @JsonBackReference(value="REVIEW_TO_DISH")
     @OneToMany(mappedBy = "dish", fetch=FetchType.EAGER)
     private Set<Review> reviews;
 

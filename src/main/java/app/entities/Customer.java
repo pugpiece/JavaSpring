@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table(
-        name = "Customer"
+        name = "CUSTOMER"
 )
 public class Customer {
     @Id
@@ -19,18 +19,18 @@ public class Customer {
     private int customerId;
 
     @Column(
-            name = "customerLogin",
+            name = "CUSTOMER_LOGIN",
             length = 50
     )
     private String customerLogin;
 
     @Column(
-            name = "customerPassword",
+            name = "CUSTOMER_PASSWORD",
             length = 50
     )
     private int customerPassword;
 
-    @JsonManagedReference(value="reviewToCustomer")
+    @JsonBackReference(value="REVIEW_TO_CUSTOMER")
     @OneToMany(mappedBy = "customer", fetch=FetchType.EAGER)
     private Set<Review> reviews;
 

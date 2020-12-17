@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table(
-        name = "Product"
+        name = "PRODUCT"
 )
 public class Product {
 
@@ -20,44 +20,44 @@ public class Product {
     private int productId;
 
     @Column(
-            name = "productName",
+            name = "PRODUCT_NAME",
             length = 50
     )
     private String productName;
 
     @Column(
-            name = "productFats",
+            name = "FATS_PER_GRAMM",
             length = 1000
     )
     private float productFats;
 
     @Column(
-            name = "productProteins",
+            name = "PROTEINS_PER_GRAMM",
             length = 1000
     )
     private float productProteins;
 
     @Column(
-            name = "productCarbohydrates",
+            name = "CARBOHYDRATES_PER_GRAMM",
             length = 1000
     )
     private float productCarbohydrates;
 
     @Column(
-            name = "productCalories",
+            name = "CALORIES_PER_GRAMM",
             length = 1000
     )
     private float productCalories;
 
     @Column(
-            name = "productCost",
+            name = "COST",
             length = 1000
     )
     private float productCost;
 
     @ManyToMany
     @JoinTable(
-            name = "ProductToDish",
+            name = "PRODUCT_TO_DISH",
             joinColumns = {@JoinColumn(
                     name = "productId"
             )},
@@ -70,12 +70,12 @@ public class Product {
 
     @ManyToMany
     @JoinTable(
-            name = "ProductToShop",
+            name = "PRODUCT_TO_SHOP",
             joinColumns = {@JoinColumn(
                     name = "productId"
             )},
             inverseJoinColumns = {@JoinColumn(
-                    name = "dishId"
+                    name = "shopId"
             )}
     )
     @JsonIgnore

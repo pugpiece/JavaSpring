@@ -6,10 +6,6 @@ import app.entities.Instrument;
 import app.entities.Review;
 import app.services.implementations.InstrumentService;
 import app.services.implementations.ReviewService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -54,6 +50,11 @@ public class ReviewController {
     @PostMapping("/UpdateMinuses/{id}")
     public void updateReviewMinuses(@PathVariable int id, @RequestBody String minuses){
         service.updateReviewMinuses(id, minuses);
+    }
+
+    @PostMapping("/UpdateOverview/{id}")
+    public void updateReviewOverview(@PathVariable int id, @RequestBody String overview){
+        service.updateReviewOverview(id, overview);
     }
 
     @PostMapping("/UpdateDish/{id}")

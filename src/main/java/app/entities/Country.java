@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table(
-        name = "Country"
+        name = "COUNTRY"
 )
 public class Country {
     @Id
@@ -19,18 +19,18 @@ public class Country {
     private int countryId;
 
     @Column(
-            name = "countryName",
+            name = "COUNTRY_NAME",
             length = 50
     )
     private String countryName;
 
     @Column(
-            name = "countryDescription",
+            name = "COUNTRY_DESCRIPTION",
             length = 10000
     )
     private String countryDescription;
 
-    @JsonManagedReference(value="dishToCountry")
+    @JsonBackReference(value="DISH_TO_COUNTRY")
     @OneToMany(mappedBy = "country", fetch=FetchType.EAGER)
     private Set<Dish> dishes;
 

@@ -15,4 +15,5 @@ public interface IReviewService {
     void deleteReview(int id);
     void updateReviewDish(int id, Dish dish);
     void updateReviewCustomer(int id, Customer customer);
+    void deleteAllNoUser();
 }
