@@ -1,5 +1,7 @@
 package app.services.interfaces;
 
+import app.entities.Customer;
+import app.entities.Dish;
 import app.entities.Review;
 
 public interface IReviewService {
@@ -11,4 +13,6 @@ public interface IReviewService {
     void updateReviewMinuses(int id, String  newMinuses);
     void updateReviewOverview(int id, String newOverview);
     void deleteReview(int id);
+    void updateReviewDish(int id, Dish dish);
+    void updateReviewCustomer(int id, Customer customer);
 }

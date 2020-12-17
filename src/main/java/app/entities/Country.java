@@ -1,6 +1,10 @@
 package app.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
@@ -26,6 +30,10 @@ public class Country {
     )
     private String countryDescription;
 
+    @JsonManagedReference(value="dishToCountry")
+    @OneToMany(mappedBy = "country", fetch=FetchType.EAGER)
+    private Set<Dish> dishes;
+
     public Country() {
     }
 
@@ -43,4 +51,7 @@ public class Country {
     public void setCountryDescription(String countryDescription) {
         this.countryDescription = countryDescription;
     }
+
+    public Set<Dish> getDishes() {return this.dishes;}
+    public void setDishes(Set<Dish> dishes) {this.dishes = dishes;}
 }

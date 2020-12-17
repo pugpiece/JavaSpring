@@ -1,6 +1,12 @@
 package app.entities;
 
+
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
@@ -12,6 +18,10 @@ public class Chef extends Customer{
             length = 5
     )
     private float chefRating;
+
+    @JsonManagedReference(value="dishToChef")
+    @OneToMany(mappedBy = "chef", fetch=FetchType.EAGER)
+    private Set<Dish> dishes;
 
     public Chef() {
     }
@@ -25,4 +35,7 @@ public class Chef extends Customer{
     public void setChefRating(float chefRating) {
         this.chefRating = chefRating;
     }
+
+    public Set<Dish> getDishes() {return this.dishes;}
+    public void setDishes(Set<Dish> dishes) {this.dishes = dishes;}
 }

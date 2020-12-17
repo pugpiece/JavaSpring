@@ -34,13 +34,13 @@ public class InstrumentService implements IInstrumentService {
     @Override
     @Transactional
     public Instrument getInstrument(int id) {
-        return instrumentRepository.getOne(id);
+        return instrumentRepository.findById(id).get();
     }
 
     @Override
     @Transactional
     public void updateInstrumentName(int id, String newName) {
-        Instrument instrument = instrumentRepository.getOne(id);
+        Instrument instrument = instrumentRepository.findById(id).get();
         instrument.setInstrumentName(newName);
         instrumentRepository.save(instrument);
     }
@@ -48,7 +48,7 @@ public class InstrumentService implements IInstrumentService {
     @Override
     @Transactional
     public void updateInstrumentDescription(int id, String newDescription) {
-        Instrument instrument = instrumentRepository.getOne(id);
+        Instrument instrument = instrumentRepository.findById(id).get();
         instrument.setInstrumentDescription(newDescription);
         instrumentRepository.save(instrument);
     }

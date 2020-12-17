@@ -4,12 +4,10 @@ import app.entities.Customer;
 import app.entities.Instrument;
 import app.services.implementations.CustomerService;
 import app.services.implementations.InstrumentService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/Instrument")
 public class InstrumentController {
     public final InstrumentService service;
 
@@ -17,32 +15,32 @@ public class InstrumentController {
         this.service = instrumentService;
     }
 
-    @GetMapping("/Instruments")
+    @GetMapping("/All")
     public Iterable<Instrument> getAllInstrument(){
         return service.getAllInstruments();
     }
 
-    @GetMapping("/Instrument/{id}")
+    @GetMapping("/{id}")
     public Instrument getInstrument(@PathVariable int id){
         return service.getInstrument(id);
     }
 
-    @GetMapping("/addInstrument")
+    @PostMapping("/Add")
     public void addInstrument(@RequestBody Instrument instrument){
         service.addInstrument(instrument);
     }
 
-    @GetMapping("/deleteInstrument/{id}")
+    @DeleteMapping("/Delete/{id}")
     public void deleteInstrument(@PathVariable int id){
         service.deleteInstrument(id);
     }
 
-    @GetMapping("/updateInstrumentName/{id}")
+    @PostMapping("/UpdateName/{id}")
     public void updateInstrumentName(@PathVariable int id, @RequestBody String name){
         service.updateInstrumentName(id, name);
     }
 
-    @GetMapping("/updateInstrumentDescription/{id}")
+    @PostMapping("/UpdateDescription/{id}")
     public void updateInstrumentDescription(@PathVariable int id, @RequestBody String description){
         service.updateInstrumentDescription(id, description);
     }

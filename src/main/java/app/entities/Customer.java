@@ -1,6 +1,10 @@
 package app.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
@@ -25,6 +29,10 @@ public class Customer {
             length = 50
     )
     private int customerPassword;
+
+    @JsonManagedReference(value="reviewToCustomer")
+    @OneToMany(mappedBy = "customer", fetch=FetchType.EAGER)
+    private Set<Review> reviews;
 
 
 
@@ -51,5 +59,8 @@ public class Customer {
     public void setCustomerPassword(String customerPassword) {
         this.customerPassword = customerPassword.hashCode();
     }
+
+    public Set<Review> getReviews() {return this.reviews;}
+    public void setReviews(Set<Review> reviews) {this.reviews = reviews;}
 
 }

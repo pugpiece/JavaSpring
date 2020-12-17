@@ -32,13 +32,13 @@ public class CustomerService implements ICustomerService {
     @Override
     @Transactional
     public Customer getCustomer(int id) {
-        return customerRepository.getOne(id);
+        return customerRepository.findById(id).get();
     }
 
     @Override
     @Transactional
     public void updateCustomerName(int id, String newName) {
-        Customer customer = customerRepository.getOne(id);
+        Customer customer = customerRepository.findById(id).get();
         customer.setCustomerLogin(newName);
         customerRepository.save(customer);
     }

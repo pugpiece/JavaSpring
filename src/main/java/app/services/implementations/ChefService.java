@@ -31,13 +31,13 @@ public class ChefService implements IChefService {
     @Override
     @Transactional
     public Chef getChef(int id) {
-        return chefRepository.getOne(id);
+        return chefRepository.findById(id).get();
     }
 
     @Override
     @Transactional
     public void updateChefName(int id, String newName) {
-        Chef chef = chefRepository.getOne(id);
+        Chef chef = chefRepository.findById(id).get();
         chef.setCustomerLogin(newName);
         chefRepository.save(chef);
     }

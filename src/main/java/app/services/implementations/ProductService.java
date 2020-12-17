@@ -34,13 +34,13 @@ public class ProductService implements IProductService {
     @Override
     @Transactional
     public Product getProduct(int id) {
-        return productRepository.getOne(id);
+        return productRepository.findById(id).get();
     }
 
     @Override
     @Transactional
     public void updateProductName(int id, String newName) {
-        Product product = productRepository.getOne(id);
+        Product product = productRepository.findById(id).get();
         product.setProductName(newName);
         productRepository.save(product);
     }
@@ -48,7 +48,7 @@ public class ProductService implements IProductService {
     @Override
     @Transactional
     public void updateProductFats(int id, float newFats) {
-        Product product = productRepository.getOne(id);
+        Product product = productRepository.findById(id).get();
         product.setProductFats(newFats);
         productRepository.save(product);
     }
@@ -56,7 +56,7 @@ public class ProductService implements IProductService {
     @Override
     @Transactional
     public void updateProductProteins(int id, float newProteins) {
-        Product product = productRepository.getOne(id);
+        Product product = productRepository.findById(id).get();
         product.setProductProteins(newProteins);
         productRepository.save(product);
     }
@@ -64,7 +64,7 @@ public class ProductService implements IProductService {
     @Override
     @Transactional
     public void updateProductCarbohydrates(int id, float newCarbohydrates) {
-        Product product = productRepository.getOne(id);
+        Product product = productRepository.findById(id).get();
         product.setProductCarbohydrates(newCarbohydrates);
         productRepository.save(product);
     }
@@ -72,7 +72,7 @@ public class ProductService implements IProductService {
     @Override
     @Transactional
     public void updateProductCalories(int id, float newCalories) {
-        Product product = productRepository.getOne(id);
+        Product product = productRepository.findById(id).get();
         product.setProductCalories(newCalories);
         productRepository.save(product);
     }
@@ -80,7 +80,7 @@ public class ProductService implements IProductService {
     @Override
     @Transactional
     public void updateProductCost(int id, float newCost) {
-        Product product = productRepository.getOne(id);
+        Product product = productRepository.findById(id).get();
         product.setProductCost(newCost);
         productRepository.save(product);
     }

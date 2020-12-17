@@ -32,13 +32,13 @@ public class CountryService implements ICountryService{
     @Override
     @Transactional
     public Country getCountry(int id) {
-        return countryRepository.getOne(id);
+        return countryRepository.findById(id).get();
     }
 
     @Override
     @Transactional
     public void updateCountryName(int id, String newName) {
-        Country country = countryRepository.getOne(id);
+        Country country = countryRepository.findById(id).get();
         country.setCountryName(newName);
         countryRepository.save(country);
     }

@@ -1,5 +1,9 @@
 package app.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 
@@ -39,19 +43,23 @@ public class Review {
     private String reviewOverview;
 
     @ManyToOne(
-            fetch = FetchType.LAZY
+            targetEntity = Customer.class,
+            fetch = FetchType.EAGER
     )
     @JoinColumn(
             name = "customerId"
     )
+    @JsonBackReference(value="reviewToCustomer")
     private Customer customer;
 
     @ManyToOne(
-            fetch = FetchType.LAZY
+            targetEntity = Dish.class,
+            fetch = FetchType.EAGER
     )
     @JoinColumn(
             name = "dishId"
     )
+    @JsonBackReference(value="reviewToDish")
     private Dish dish;
 
     public Review() {

@@ -1,5 +1,8 @@
 package app.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -43,6 +46,7 @@ public class Shop {
                     name = "productId"
             )}
     )
+    @JsonIgnore
     private Set<Product> products;
 
     @ManyToMany
@@ -55,6 +59,7 @@ public class Shop {
                     name = "instrumentId"
             )}
     )
+    @JsonIgnore
     private Set<Instrument> instruments;
 
     public Shop() {

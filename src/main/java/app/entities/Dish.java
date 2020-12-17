@@ -1,5 +1,9 @@
 package app.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -28,19 +32,23 @@ public class Dish {
     private String dishRecipe;
 
     @ManyToOne(
-            fetch = FetchType.LAZY
+            targetEntity = Country.class,
+            fetch = FetchType.EAGER
     )
     @JoinColumn(
             name = "countryId"
     )
+    @JsonBackReference(value="dishToCountry")
     private Country country;
 
     @ManyToOne(
-            fetch = FetchType.LAZY
+            targetEntity = Chef.class,
+            fetch = FetchType.EAGER
     )
     @JoinColumn(
             name = "customerId"
     )
+    @JsonBackReference(value="dishToChef")
     private Chef chef;
 
     @ManyToMany
@@ -53,6 +61,7 @@ public class Dish {
                     name = "productId"
             )}
     )
+    @JsonIgnore
     private Set<Product> products;
 
     @ManyToMany
@@ -65,7 +74,12 @@ public class Dish {
                     name = "instrumentId"
             )}
     )
+    @JsonIgnore
     private Set<Instrument> instruments;
+
+    @JsonManagedReference(value="reviewToDish")
+    @OneToMany(mappedBy = "dish", fetch=FetchType.EAGER)
+    private Set<Review> reviews;
 
     public Dish() {
     }
@@ -100,5 +114,8 @@ public class Dish {
 
     public Set<Instrument> getInstruments() { return this.instruments; }
     public void setInstruments(Set<Instrument> instruments) { this.instruments = instruments; }
+
+    public Set<Review> getReviews() {return this.reviews;}
+    public void setReviews(Set<Review> reviews) {this.reviews = reviews;}
 
 }
