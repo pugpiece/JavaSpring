@@ -1,5 +1,6 @@
 package app.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -59,26 +60,26 @@ public class Product {
     @JoinTable(
             name = "PRODUCT_TO_DISH",
             joinColumns = {@JoinColumn(
-                    name = "productId"
+                    name = "ID_PRODUCT"
             )},
             inverseJoinColumns = {@JoinColumn(
-                    name = "dishId"
+                    name = "ID_DISH"
             )}
     )
-    @JsonIgnore
+    @JsonBackReference(value="PRODUCT_TO_DISH")
     private Set<Dish> dishes;
 
     @ManyToMany
     @JoinTable(
             name = "PRODUCT_TO_SHOP",
             joinColumns = {@JoinColumn(
-                    name = "productId"
+                    name = "ID_PRODUCT"
             )},
             inverseJoinColumns = {@JoinColumn(
-                    name = "shopId"
+                    name = "ID_SHOP"
             )}
     )
-    @JsonIgnore
+    @JsonBackReference(value="PRODUCT_TO_SHOP")
     private Set<Shop> shops;
 
     public Product() {

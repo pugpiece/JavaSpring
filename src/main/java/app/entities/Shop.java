@@ -40,26 +40,26 @@ public class Shop {
     @JoinTable(
             name = "PRODUCT_TO_SHOP",
             joinColumns = {@JoinColumn(
-                    name = "shopId"
+                    name = "ID_SHOP"
             )},
             inverseJoinColumns = {@JoinColumn(
-                    name = "productId"
+                    name = "ID_PRODUCT"
             )}
     )
-    @JsonIgnore
+    @JsonManagedReference(value="PRODUCT_TO_SHOP")
     private Set<Product> products;
 
     @ManyToMany
     @JoinTable(
             name = "INSTRUMENT_TO_SHOP",
             joinColumns = {@JoinColumn(
-                    name = "shopId"
+                    name = "ID_SHOP"
             )},
             inverseJoinColumns = {@JoinColumn(
-                    name = "instrumentId"
+                    name = "ID_INSTRUMENT"
             )}
     )
-    @JsonIgnore
+    @JsonManagedReference(value="INSTRUMENT_TO_SHOP")
     private Set<Instrument> instruments;
 
     public Shop() {
